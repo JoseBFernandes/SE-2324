@@ -1,1 +1,6 @@
-
+Review by Eduardo Dias 62466
+Acho que o memento esta correto. a ideia dele é exatamente a de capturar o estado de um objeto num determinado momento para mais tarde
+quando for chamado de volta restaure o seu estado. em principio essa parece-me sim a ideia aplicada a esse caso, por isso parece-me correto.
+Parece-me que o Strategy Pattern está correto. Mas a explicação esta um pouco vaga. Parece-me sim que a aplicação está correta, até 
+porque este é utilizado neste caso mesmo para uma classe nao ter que suportar com varias classes de algoritmo. Portanto, parece-me sim que a ideia está correta.
+O template pattern parece-me também correto apesar da explicação não ser a mais adequada Dá para perceber o que queres dizer.A ideia em si e o gráfico também me parecem corretos
