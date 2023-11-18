@@ -41,6 +41,10 @@ public final class CanvasMouseListener extends FreeColClientHolder
     private FreeColClient freeColClient;
     private int tileSize;
 
+    private int mapPointX;
+    private int mapPointY;
+
+
     /**
      * Create a new mouse listener.
      *
@@ -159,8 +163,8 @@ public final class CanvasMouseListener extends FreeColClientHolder
         //final Dimension size = getSize();
         final Point focusPoint = getGUI().getFocusMapPoint();
         final Dimension mapTileSize = getGUI().getScaledImageLibrary().scale(ImageLibrary.TILE_SIZE);
-        final int mapPointX = focusPoint.x + (mapTileSize.width ) / tileSize;
-        final int mapPointY = focusPoint.y + (mapTileSize.height ) / (tileSize / 2);
+        mapPointX= focusPoint.x + (mapTileSize.width ) / tileSize;
+        mapPointY= focusPoint.y + (mapTileSize.height ) / (tileSize / 2);
 
         getGUI().setFocusMapPoint(new Point(mapPointX, mapPointY));
     }
