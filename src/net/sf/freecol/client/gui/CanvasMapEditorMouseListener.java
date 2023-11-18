@@ -72,6 +72,8 @@ public final class CanvasMapEditorMouseListener extends FreeColClientHolder
      */
     private void drawBox(JComponent component,
                          Point startPoint, Point endPoint) {
+        System.out.println("mouse box");
+
         if (startPoint == null || endPoint == null
             || startPoint.distance(endPoint) == 0
             || getFreeColClient().getMapEditorController() == null)
@@ -94,6 +96,8 @@ public final class CanvasMapEditorMouseListener extends FreeColClientHolder
      */
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println("mouse clicked");
+
         if (getMap() == null) return;
 
         try {
@@ -113,6 +117,7 @@ public final class CanvasMapEditorMouseListener extends FreeColClientHolder
      */
     @Override
     public void mousePressed(MouseEvent e) {
+        System.out.println("mouse pressionados");
         if (getMap() == null || !e.getComponent().isEnabled()) return;
 
         try {
@@ -146,6 +151,8 @@ public final class CanvasMapEditorMouseListener extends FreeColClientHolder
      */
     @Override
     public void mouseReleased(MouseEvent e) {
+        //System.out.println("a ver aqui dentro");
+
         if (getMap() == null || e.getButton() == MouseEvent.BUTTON1) return;
         final JComponent component = (JComponent)e.getSource();
         final MapEditorController controller
@@ -225,6 +232,8 @@ public final class CanvasMapEditorMouseListener extends FreeColClientHolder
      */
     @Override
     public void mouseDragged(MouseEvent e) {
+        System.out.println("dragged 1");
+
         if (getMap() == null) return;
         final JComponent component = (JComponent)e.getSource();
 
@@ -242,6 +251,8 @@ public final class CanvasMapEditorMouseListener extends FreeColClientHolder
      */
     @Override
     public void mouseMoved(MouseEvent e) {
+        System.out.println("mouse moved");
+
         if (getMap() == null) return;
 
         scrolling.performAutoScrollIfActive(e);

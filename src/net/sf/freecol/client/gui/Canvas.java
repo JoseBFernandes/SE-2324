@@ -220,7 +220,7 @@ public final class Canvas extends JDesktopPane {
         this.mapViewer = mapViewer;
         this.mapControls = mapControls;
         this.greyLayer = new GrayLayer(freeColClient);
-
+        System.out.println("canvas canvas.java");
         setDoubleBuffered(true);
         setOpaque(true);
         setLayout(null);

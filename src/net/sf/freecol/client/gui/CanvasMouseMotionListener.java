@@ -19,12 +19,16 @@
 
 package net.sf.freecol.client.gui;
 
+import java.awt.*;
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.logging.Logger;
 
+import net.sf.freecol.client.ClientOptions;
 import net.sf.freecol.client.FreeColClient;
 import net.sf.freecol.client.control.FreeColClientHolder;
+import net.sf.freecol.common.model.Map;
 
 
 /**
@@ -36,6 +40,8 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
     
     private final Scrolling scrolling;
 
+    private FreeColClient freeColClient;
+
     /**
      * Creates a new listener for mouse movement.
      *
@@ -43,7 +49,7 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
      */
     public CanvasMouseMotionListener(FreeColClient freeColClient, Scrolling scrolling) {
         super(freeColClient);
-        
+        freeColClient=freeColClient;
         this.scrolling = scrolling;
     }
 
@@ -55,6 +61,9 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
      */
     @Override
     public void mouseMoved(MouseEvent me) {
+        //este metodo controla apenas onde anda o rato
+
+
         scrolling.performAutoScrollIfActive(me);
 
         getGUI().updateGoto(me.getX(), me.getY(), false);
@@ -66,12 +75,15 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
     @Override
     public void mouseDragged(MouseEvent me) {
         // getButton does not work here, TODO: find out why
+        // arrastar o boneco do jogo
         if ((me.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) != MouseEvent.BUTTON1_DOWN_MASK) {
             return;
         }
-        
+        //System.out.println("ola");
         scrolling.performDragScrollIfActive(me);
 
         getGUI().updateGoto(me.getX(), me.getY(), true);
     }
+
+
 }
