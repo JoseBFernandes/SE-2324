@@ -41,7 +41,7 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
     private final Scrolling scrolling;
 
     private FreeColClient freeColClient;
-
+    int tileSize;
     /**
      * Creates a new listener for mouse movement.
      *
@@ -51,6 +51,8 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
         super(freeColClient);
         freeColClient=freeColClient;
         this.scrolling = scrolling;
+        tileSize = 4 * freeColClient.getClientOptions()
+                .getInteger(ClientOptions.DEFAULT_ZOOM_LEVEL);
     }
 
 
@@ -79,10 +81,30 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
         if ((me.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) != MouseEvent.BUTTON1_DOWN_MASK) {
             return;
         }
-        //System.out.println("ola");
+        final Point focusPoint = getGUI().getFocusMapPoint();
+
+        System.out.println("\nmouseDragged canvasMouseMotionListener  <------\n");
+
         scrolling.performDragScrollIfActive(me);
 
         getGUI().updateGoto(me.getX(), me.getY(), true);
+
+
+        int x=me.getX();
+        int y=me.getY();
+
+
+
+        final int novoX = focusPoint.x + ((x-getGUI().getMapViewDimension().width/2)/(tileSize*2));
+        final int novoY = focusPoint.y + ((y-getGUI().getMapViewDimension().height/2)/tileSize) ;
+
+
+        //System.out.println(tileSize);
+        System.out.println("novo x -> "+ novoX);
+        System.out.println("novo y -> "+ novoY);
+        getGUI().setFocusMapPoint(new Point(novoX, novoY));
+
+
     }
 
 
