@@ -41,6 +41,9 @@ import net.sf.freecol.client.FreeColClient;
 import net.sf.freecol.client.gui.FontLibrary;
 import net.sf.freecol.client.gui.action.AssignTradeRouteAction;
 import net.sf.freecol.client.gui.action.AttackRangedAction;
+import net.sf.freecol.client.gui.action.BonusActionPoint;
+import net.sf.freecol.client.gui.action.BonusActionGold;
+import net.sf.freecol.client.gui.action.BonusActionTax;
 import net.sf.freecol.client.gui.action.BuildColonyAction;
 import net.sf.freecol.client.gui.action.CenterAction;
 import net.sf.freecol.client.gui.action.ChangeAction;
@@ -152,6 +155,7 @@ public class InGameMenuBar extends FreeColMenuBar {
         buildOrdersMenu();
         buildReportMenu();
         buildColopediaMenu();
+        buildBonusMenu();
 
         if (FreeColDebugger.isInDebugMode(FreeColDebugger.DebugMode.MENUS)) {
             add(new DebugMenu(this.freeColClient));
