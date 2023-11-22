@@ -164,6 +164,21 @@ public class InGameMenuBar extends FreeColMenuBar {
         update();
     }
 
+    /**
+     * Allows you add more bonuses during the game.
+     */
+    private void buildBonusMenu() {
+        JMenu menu = Utility.localizedMenu("menuBar.addBonus");
+        menu.setOpaque(false);
+        menu.setMnemonic(KeyEvent.VK_B);
+
+        menu.add(getMenuItem(BonusActionPoint.id));
+        menu.add(getMenuItem(BonusActionGold.id));
+        menu.add(getMenuItem(BonusActionTax.id));
+
+        add(menu);
+    }
+
     private void buildGameMenu() {
         // --> Game
         JMenu menu = Utility.localizedMenu("menuBar.game");
