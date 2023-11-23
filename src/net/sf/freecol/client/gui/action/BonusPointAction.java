@@ -49,11 +49,7 @@ public class BonusPointAction extends FreeColAction {
      */
     @Override
     protected boolean shouldBeEnabled() {
-        if (freeColClient.isMapEditor()) return true;
-
-        // In game
-        if (!freeColClient.canSaveCurrentGame()) return false;
-        return !getGUI().isPanelShowing();
+        return true;
     }
 
 
@@ -64,12 +60,7 @@ public class BonusPointAction extends FreeColAction {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (freeColClient.isMapEditor()) {
-            freeColClient.getMapEditorController().saveMapEditorGame();
-            freeColClient.quit();
-        } else {
-            if (!igc().saveAndQuit()) return;
-        }
+        // TODO:
     }
 }
 

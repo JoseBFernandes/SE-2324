@@ -2645,6 +2645,15 @@ public class SwingGUI extends GUI {
     }
 
     /**
+     * WIP:
+     * {@inheritDoc}
+     */
+    @Override
+    public int showAddMoreGoldDialog(StringTemplate question, int maximum) {
+        return this.widgets.showAddMoreGoldDialog(question, maximum);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

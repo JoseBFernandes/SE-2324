@@ -32,6 +32,7 @@ import javax.swing.filechooser.FileFilter;
 
 import net.sf.freecol.client.FreeColClient;
 import net.sf.freecol.client.gui.SwingGUI.PopupPosition;
+import net.sf.freecol.client.gui.dialog.AddMoreGoldDialog;
 import net.sf.freecol.client.gui.dialog.CaptureGoodsDialog;
 import net.sf.freecol.client.gui.dialog.ChooseFoundingFatherDialog;
 import net.sf.freecol.client.gui.dialog.ConfirmDeclarationDialog;
@@ -1005,6 +1006,17 @@ public final class Widgets {
             = new SelectTributeAmountDialog(this.freeColClient, getFrame(),
                                             question, maximum);
         Integer result = this.canvas.showFreeColDialog(dialog, null);
+        return (result == null) ? -1 : result;
+    }
+
+    /**
+     * WIP::
+     */
+    public int showAddMoreGoldDialog(StringTemplate question, int maximum) {
+        FreeColDialog<Integer> dialog = new AddMoreGoldDialog(this.freeColClient, getFrame(), question, maximum);
+
+        Integer result = this.canvas.showFreeColDialog(dialog, null);
+
         return (result == null) ? -1 : result;
     }
 

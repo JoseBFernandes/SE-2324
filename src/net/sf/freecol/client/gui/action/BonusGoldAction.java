@@ -49,18 +49,19 @@ public class BonusGoldAction extends FreeColAction {
      */
     @Override
     protected boolean shouldBeEnabled() {
-        return true; // TODO:
+        return true;
     }
 
 
     // Interface ActionListener
 
     /**
+     * WIP:
      * {@inheritDoc}
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        // TODO:
+        if (!igc().saveBonusGold()) return;
     }
 }
 

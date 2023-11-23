@@ -49,7 +49,7 @@ public class BonusTaxAction extends FreeColAction {
      */
     @Override
     protected boolean shouldBeEnabled() {
-        return false; // TODO:
+        return true;
     }
 
 

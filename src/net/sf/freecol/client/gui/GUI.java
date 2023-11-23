@@ -305,6 +305,16 @@ public class GUI extends FreeColClientHolder {
     }
 
     /**
+     * WIP:
+     */
+    public int confirmSaveBonusGold() {
+        StringTemplate t;
+        t = StringTemplate.template("confirmBonusDialog.addGold");
+
+        return showAddMoreGoldDialog(t, 5);
+    }
+
+    /**
      * Check if an attack results in a transition from peace or cease fire to
      * war and, if so, warn the player.
      *
@@ -2476,6 +2486,14 @@ public class GUI extends FreeColClientHolder {
      */
     public int showSelectTributeAmountDialog(StringTemplate question,
                                              int maximum) { return -1; }
+
+    /**
+     * WIP:
+     * @param question
+     * @param maximum
+     * @return
+     */
+    public int showAddMoreGoldDialog(StringTemplate question, int maximum) { return -1; }
 
     /**
      * Show the {@code ServerListPanel}.
