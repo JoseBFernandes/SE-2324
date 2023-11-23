@@ -27,17 +27,17 @@ import net.sf.freecol.client.FreeColClient;
 /**
  * An action to allow the user to add more tax during the game.
  */
-public class BonusActionTax extends FreeColAction {
+public class BonusTaxAction extends FreeColAction {
 
-    public static final String id = "bonusActionTax";
+    public static final String id = "bonusTaxAction";
 
 
     /**
-     * Creates a new {@code BonusActionTax}.
+     * Creates a new {@code BonusTaxAction}.
      *
      * @param freeColClient The main controller object for the client.
      */
-    public BonusActionTax(FreeColClient freeColClient) {
+    public BonusTaxAction(FreeColClient freeColClient) {
         super(freeColClient, id);
     }
 

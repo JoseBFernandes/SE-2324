@@ -25,19 +25,19 @@ import net.sf.freecol.client.FreeColClient;
 
 
 /**
- * An action to allow the user to add more point during the game.
+ * An action to allow the user to add more gold during the game.
  */
-public class BonusActionPoint extends FreeColAction {
+public class BonusGoldAction extends FreeColAction {
 
-    public static final String id = "bonusActionPoint";
+    public static final String id = "bonusGoldAction";
 
 
     /**
-     * Creates a new {@code BonusActionPoint}.
+     * Creates a new {@code BonusGoldAction}.
      *
      * @param freeColClient The main controller object for the client.
      */
-    public BonusActionPoint(FreeColClient freeColClient) {
+    public BonusGoldAction(FreeColClient freeColClient) {
         super(freeColClient, id);
     }
 

@@ -25,19 +25,19 @@ import net.sf.freecol.client.FreeColClient;
 
 
 /**
- * An action to allow the user to add more gold during the game.
+ * An action to allow the user to add more point during the game.
  */
-public class BonusActionGold extends FreeColAction {
+public class BonusPointAction extends FreeColAction {
 
-    public static final String id = "bonusActionGold";
+    public static final String id = "bonusPointAction";
 
 
     /**
-     * Creates a new {@code BonusActionGold}.
+     * Creates a new {@code BonusPointAction}.
      *
      * @param freeColClient The main controller object for the client.
      */
-    public BonusActionGold(FreeColClient freeColClient) {
+    public BonusPointAction(FreeColClient freeColClient) {
         super(freeColClient, id);
     }
 
@@ -49,7 +49,11 @@ public class BonusActionGold extends FreeColAction {
      */
     @Override
     protected boolean shouldBeEnabled() {
-        return true; // TODO:
+        if (freeColClient.isMapEditor()) return true;
+
+        // In game
+        if (!freeColClient.canSaveCurrentGame()) return false;
+        return !getGUI().isPanelShowing();
     }
 
 
@@ -60,7 +64,12 @@ public class BonusActionGold extends FreeColAction {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        // TODO:
+        if (freeColClient.isMapEditor()) {
+            freeColClient.getMapEditorController().saveMapEditorGame();
+            freeColClient.quit();
+        } else {
+            if (!igc().saveAndQuit()) return;
+        }
     }
 }
 
