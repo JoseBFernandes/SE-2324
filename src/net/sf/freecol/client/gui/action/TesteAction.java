@@ -23,16 +23,20 @@ import java.awt.event.ActionEvent;
 
 import net.sf.freecol.client.FreeColClient;
 import net.sf.freecol.client.gui.GUI;
+import net.sf.freecol.common.model.Game;
+import net.sf.freecol.common.model.Player;
 import net.sf.freecol.common.model.Tile;
 import net.sf.freecol.common.model.Unit;
+import net.sf.freecol.server.FreeColServer;
+import net.sf.freecol.server.control.InGameController;
 
 
 /**
- * An action for centering the view on the active unit.
+ * An action for testing the view on the active unit.
  */
-public class CenterAction extends UnitAction {
+public class TesteAction extends UnitAction {
 
-    public static final String id = "centerAction";
+    public static final String id = "testeAction";
 
 
     /**
@@ -40,7 +44,7 @@ public class CenterAction extends UnitAction {
      *
      * @param freeColClient The {@code FreeColClient} for the game.
      */
-    public CenterAction(FreeColClient freeColClient) {
+    public TesteAction(FreeColClient freeColClient) {
         super(freeColClient, id);
     }
 
@@ -52,12 +56,23 @@ public class CenterAction extends UnitAction {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        System.out.println("action commmand "+ ae.getActionCommand());
+        //System.out.println("ola eu sou um teste");
         final GUI gui = getGUI();
         final Unit active = gui.getActiveUnit();
         if (active != null) {
-            final Tile tile = active.getTile();
-            if (tile != null) gui.setFocus(tile);
+            System.out.println("a ver se entro aqui");
+
+            final FreeColServer server = freeColClient.getFreeColServer();
+            final Player player = freeColClient.getMyPlayer();
+            final Game sGame = server.getGame();
+
+            final Player sPlayer = sGame.getFreeColGameObject(player.getId(),
+                    Player.class);
+            player.modifyGold(1000);
+            sPlayer.modifyGold(1000);
         }
+            //System.out.println("explorado tile "+game.getMap().getTile(500,100).isExplored());
+            //System.out.println("tipo do tile "+game.getMap().getTile(500,100).getType());
+
     }
 }
