@@ -19,22 +19,27 @@
 
 package net.sf.freecol.client.gui;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.logging.Logger;
 
+import net.sf.freecol.client.ClientOptions;
 import net.sf.freecol.client.FreeColClient;
 import net.sf.freecol.client.control.FreeColClientHolder;
+import net.sf.freecol.common.model.Map;
 
 
 /**
  * Listens to mouse buttons being pressed at the level of the Canvas.
  */
-public final class CanvasMouseListener extends FreeColClientHolder
-    implements MouseListener {
+public final class CanvasMouseListener extends FreeColClientHolder implements MouseListener, MouseMotionListener {
 
     private static final Logger logger = Logger.getLogger(CanvasMouseListener.class.getName());
 
+    private FreeColClient freeColClient;
+    private int tileSize;
 
     /**
      * Create a new mouse listener.
@@ -42,7 +47,12 @@ public final class CanvasMouseListener extends FreeColClientHolder
      * @param freeColClient The enclosing {@code FreeColClient}.
      */
     public CanvasMouseListener(FreeColClient freeColClient) {
+
+
         super(freeColClient);
+        tileSize = 4 * freeColClient.getClientOptions()
+                .getInteger(ClientOptions.DEFAULT_ZOOM_LEVEL);
+        freeColClient=freeColClient;
     }
 
 
@@ -62,6 +72,7 @@ public final class CanvasMouseListener extends FreeColClientHolder
      * {@inheritDoc}
      */
     public void mousePressed(MouseEvent e) {
+        System.out.println("mousePressed CanvasMouseListener ---------------------");
         if (!e.getComponent().isEnabled()) return;
         final GUI gui = getGUI();
         
@@ -73,6 +84,7 @@ public final class CanvasMouseListener extends FreeColClientHolder
         switch (e.getButton()) {
         case MouseEvent.BUTTON1: 
             // If we have GoTo mode enabled then GoTo takes precedence
+
             if (gui.isGotoStarted()) {
                 gui.performGoto(e.getX(), e.getY());
                 break;
@@ -81,12 +93,19 @@ public final class CanvasMouseListener extends FreeColClientHolder
             // Drag and selection
             // Enable dragging with button 1
             // @see CanvasMouseMotionListener#mouseDragged
+            System.out.println("drag and selection 1 <------------------->");
             gui.prepareDrag(e.getX(), e.getY());
+            //setFocus(e);
+
             break;
         case MouseEvent.BUTTON2: // Immediate goto
+            System.out.println("drag and selection 2 <------------------->");
+
             gui.performGoto(e.getX(), e.getY());
             break;
         case MouseEvent.BUTTON3: // Immediate tile popup
+            System.out.println("drag and selection 3 <------------------->");
+
             gui.showTilePopup(gui.tileAt(e.getX(), e.getY()));
             break;
         default:
@@ -122,4 +141,21 @@ public final class CanvasMouseListener extends FreeColClientHolder
 
         getGUI().clickAt(e.getClickCount(), e.getX(), e.getY());
     }
+
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        System.out.println("mouseDragged dentro ");
+        //setFocus(e);
+        }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void mouseMoved(MouseEvent e) {}
+
+
+
+
+
 }

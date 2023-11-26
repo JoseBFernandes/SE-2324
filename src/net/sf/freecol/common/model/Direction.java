@@ -91,6 +91,7 @@ public enum Direction implements Named {
      * @return The map position after the step.
      */
     public Map.Position step(int x, int y) {
+        //System.out.println("step Direction ainda passo aqui");
         return ((y & 1) != 0)
             ? new Map.Position(x + oddDX, y + oddDY)
             : new Map.Position(x + evenDX, y + evenDY);

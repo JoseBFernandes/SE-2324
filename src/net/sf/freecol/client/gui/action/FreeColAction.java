@@ -127,7 +127,7 @@ public abstract class FreeColAction extends AbstractAction
      */
     protected FreeColAction(FreeColClient freeColClient, String id) {
         super(Messages.getName(id));
-
+        System.out.println("FreeColAction messages.getName() "+Messages.getName(id));
         this.freeColClient = freeColClient;
 
         putValue(ACTION_ID, id);

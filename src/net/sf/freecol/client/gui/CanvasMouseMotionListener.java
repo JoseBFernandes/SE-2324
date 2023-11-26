@@ -19,12 +19,16 @@
 
 package net.sf.freecol.client.gui;
 
+import java.awt.*;
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.logging.Logger;
 
+import net.sf.freecol.client.ClientOptions;
 import net.sf.freecol.client.FreeColClient;
 import net.sf.freecol.client.control.FreeColClientHolder;
+import net.sf.freecol.common.model.Map;
 
 
 /**
@@ -36,6 +40,8 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
     
     private final Scrolling scrolling;
 
+    private FreeColClient freeColClient;
+    int tileSize;
     /**
      * Creates a new listener for mouse movement.
      *
@@ -43,8 +49,10 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
      */
     public CanvasMouseMotionListener(FreeColClient freeColClient, Scrolling scrolling) {
         super(freeColClient);
-        
+        freeColClient=freeColClient;
         this.scrolling = scrolling;
+        tileSize = 4 * freeColClient.getClientOptions()
+                .getInteger(ClientOptions.DEFAULT_ZOOM_LEVEL);
     }
 
 
@@ -55,6 +63,9 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
      */
     @Override
     public void mouseMoved(MouseEvent me) {
+        //este metodo controla apenas onde anda o rato
+
+
         scrolling.performAutoScrollIfActive(me);
 
         getGUI().updateGoto(me.getX(), me.getY(), false);
@@ -66,12 +77,35 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
     @Override
     public void mouseDragged(MouseEvent me) {
         // getButton does not work here, TODO: find out why
+        // arrastar o boneco do jogo
         if ((me.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) != MouseEvent.BUTTON1_DOWN_MASK) {
             return;
         }
-        
+        final Point focusPoint = getGUI().getFocusMapPoint();
+
+        System.out.println("\nmouseDragged canvasMouseMotionListener  <------\n");
+
         scrolling.performDragScrollIfActive(me);
 
         getGUI().updateGoto(me.getX(), me.getY(), true);
+
+
+        int x=me.getX();
+        int y=me.getY();
+
+
+
+        final int novoX = focusPoint.x + ((x-getGUI().getMapViewDimension().width/2)/(tileSize*2));
+        final int novoY = focusPoint.y + ((y-getGUI().getMapViewDimension().height/2)/tileSize) ;
+
+
+        //System.out.println(tileSize);
+        System.out.println("novo x -> "+ novoX);
+        System.out.println("novo y -> "+ novoY);
+        getGUI().setFocusMapPoint(new Point(novoX, novoY));
+
+
     }
+
+
 }

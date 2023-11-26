@@ -53,6 +53,8 @@ public class CanvasMapViewer extends JComponent {
     }
     
     public void paintImmediately() {
+        //renderizaçao do mapa
+        //System.out.println("printImmmediately");
         if (!isMapAvailable()) {
             return;
         }
@@ -63,6 +65,8 @@ public class CanvasMapViewer extends JComponent {
     
     @Override
     protected void paintComponent(Graphics g) {
+        //qualquer coisa a renderizar o jogo
+        //System.out.println("paintComponent");
         final long startTime = System.currentTimeMillis();
         super.paintComponent(g);
         
@@ -94,6 +98,7 @@ public class CanvasMapViewer extends JComponent {
         // Get the background without scaling, to avoid wasting
         // memory needlessly keeping an unbounded number of rescaled
         // versions of the largest image in FreeCol, forever.
+        System.out.println("paintMainMenuBackgound");
         final Image bgImage = ImageLibrary.getCanvasBackgroundImage();
         if (bgImage != null) {
             // Draw background image with scaling.
