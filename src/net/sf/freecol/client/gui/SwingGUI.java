@@ -127,6 +127,7 @@ import net.sf.freecol.common.resources.ImageResource;
 import net.sf.freecol.common.resources.ResourceManager;
 import net.sf.freecol.common.util.Introspector;
 import net.sf.freecol.common.util.Utils;
+import net.sf.freecol.server.FreeColServer;
 
 
 /**
@@ -2649,19 +2650,23 @@ public class SwingGUI extends GUI {
     }
 
     /**
-     * WIP:
+     * Show dialog to add bonus gold
      * {@inheritDoc}
      */
     @Override
     public boolean showAddMoreGoldDialog(StringTemplate question, int maximum) {
         int result = this.widgets.showAddMoreGoldDialog(question, maximum);
 
-        /**
-         * add gold to increment
-         */
+        // Player!
         final Player player = this.freeColClient.getMyPlayer();
+        // Server!
+        final FreeColServer server = this.freeColClient.getFreeColServer();
+        final Game sGame     = server.getGame();
+        final Player sPlayer = sGame.getFreeColGameObject(player.getId(), Player.class);
+
         if (result != -1) {
             player.modifyGold(result);
+            sPlayer.modifyGold(result);
             return true;
         }
         else {
