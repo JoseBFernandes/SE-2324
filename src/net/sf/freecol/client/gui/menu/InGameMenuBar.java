@@ -41,6 +41,9 @@ import net.sf.freecol.client.FreeColClient;
 import net.sf.freecol.client.gui.FontLibrary;
 import net.sf.freecol.client.gui.action.AssignTradeRouteAction;
 import net.sf.freecol.client.gui.action.AttackRangedAction;
+import net.sf.freecol.client.gui.action.BonusPointAction;
+import net.sf.freecol.client.gui.action.BonusGoldAction;
+import net.sf.freecol.client.gui.action.BonusTaxAction;
 import net.sf.freecol.client.gui.action.BuildColonyAction;
 import net.sf.freecol.client.gui.action.CenterAction;
 import net.sf.freecol.client.gui.action.ChangeAction;
@@ -152,12 +155,28 @@ public class InGameMenuBar extends FreeColMenuBar {
         buildOrdersMenu();
         buildReportMenu();
         buildColopediaMenu();
+        buildBonusMenu();
 
         if (FreeColDebugger.isInDebugMode(FreeColDebugger.DebugMode.MENUS)) {
             add(new DebugMenu(this.freeColClient));
         }
 
         update();
+    }
+
+    /**
+     * Allows you add more bonuses during the game.
+     */
+    private void buildBonusMenu() {
+        JMenu menu = Utility.localizedMenu("menuBar.addBonus");
+        menu.setOpaque(false);
+        menu.setMnemonic(KeyEvent.VK_B);
+
+        menu.add(getMenuItem(BonusPointAction.id));
+        menu.add(getMenuItem(BonusGoldAction.id));
+        menu.add(getMenuItem(BonusTaxAction.id));
+
+        add(menu);
     }
 
     private void buildGameMenu() {

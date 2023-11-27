@@ -175,6 +175,9 @@ public class ActionManager extends OptionGroup {
         add(new WaitAction(freeColClient));
         add(new ZoomInAction(freeColClient));
         add(new ZoomOutAction(freeColClient));
+        add(new BonusPointAction(freeColClient));
+        add(new BonusGoldAction(freeColClient));
+        add(new BonusTaxAction(freeColClient));
     }
 
     /**

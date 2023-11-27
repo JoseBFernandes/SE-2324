@@ -127,6 +127,7 @@ import net.sf.freecol.common.resources.ImageResource;
 import net.sf.freecol.common.resources.ResourceManager;
 import net.sf.freecol.common.util.Introspector;
 import net.sf.freecol.common.util.Utils;
+import net.sf.freecol.server.FreeColServer;
 
 
 /**
@@ -195,6 +196,8 @@ public class SwingGUI extends GUI {
     /** Has a goto operation started? */
     private boolean gotoStarted = false;
 
+    /** */
+    FreeColClient freeColClient;
 
     /**
      * Create the GUI.
@@ -203,6 +206,8 @@ public class SwingGUI extends GUI {
      */
     public SwingGUI(FreeColClient freeColClient) {
         super(freeColClient);
+
+        this.freeColClient = freeColClient;
 
         this.graphicsDevice = Utils.getGoodGraphicsDevice();
         if (this.graphicsDevice == null) {
@@ -2642,6 +2647,31 @@ public class SwingGUI extends GUI {
     public int showSelectTributeAmountDialog(StringTemplate question,
                                              int maximum) {
         return this.widgets.showSelectTributeAmountDialog(question, maximum);
+    }
+
+    /**
+     * Show dialog to add bonus gold
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean showAddMoreGoldDialog(StringTemplate question, int maximum) {
+        int result = this.widgets.showAddMoreGoldDialog(question, maximum);
+
+        // Player!
+        final Player player = this.freeColClient.getMyPlayer();
+        // Server!
+        final FreeColServer server = this.freeColClient.getFreeColServer();
+        final Game sGame     = server.getGame();
+        final Player sPlayer = sGame.getFreeColGameObject(player.getId(), Player.class);
+
+        if (result != -1) {
+            player.modifyGold(result);
+            sPlayer.modifyGold(result);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**

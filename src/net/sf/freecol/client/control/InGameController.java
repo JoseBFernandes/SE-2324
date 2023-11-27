@@ -4831,6 +4831,20 @@ public final class InGameController extends FreeColClientHolder {
     }
 
     /**
+     * Opens a dialog where the user should specify the gold to save.
+     *
+     * Called from BonusGoldAction.
+     *
+     * @return True if the gold was saved.
+     */
+    public boolean saveBonusGold() {
+        final Game game = getGame();
+        if (game == null) return false;
+
+        return getGUI().confirmSaveBonusGold();
+    }
+
+    /**
      * Display the results of speaking to a chief.
      *
      * @param unit The {@code Unit} that was speaking.
