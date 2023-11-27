@@ -51,7 +51,7 @@ public final class AddMoreGoldDialog
     private final JTextField input;
 
     /** The maxumum amount allowed. */
-    private final int maximum =1000;
+    private final int maximum;
 
 
     /**

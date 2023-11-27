@@ -310,7 +310,7 @@ public class GUI extends FreeColClientHolder {
         StringTemplate t;
         t = StringTemplate.template("confirmBonusDialog.addGold");
 
-        return showAddMoreGoldDialog(t, 5);
+        return showAddMoreGoldDialog(t, 1000);
     }
 
     /**
@@ -1376,7 +1376,10 @@ public class GUI extends FreeColClientHolder {
      * @param x Drag x coordinate (pixels).
      * @param y Drag x coordinate (pixels).
      */
-    public void prepareDrag(int x, int y) {}
+    public void prepareDrag(int x, int y) {
+
+
+    }
 
     
     // MapControls handling
@@ -2451,7 +2454,9 @@ public class GUI extends FreeColClientHolder {
      *
      * @return The map scale as a {@code Dimension}.
      */
-    public Dimension showScaleMapSizeDialog() { return null; }
+    public Dimension showScaleMapSizeDialog() {
+        System.out.println("sera daqui que vim buscar?????????");
+        return null; }
 
     /**
      * Show a dialog allowing selecting an amount of goods.
