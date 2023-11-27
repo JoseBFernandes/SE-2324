@@ -46,6 +46,7 @@ import net.sf.freecol.client.gui.action.BonusGoldAction;
 import net.sf.freecol.client.gui.action.BonusTaxAction;
 import net.sf.freecol.client.gui.action.BuildColonyAction;
 import net.sf.freecol.client.gui.action.CenterAction;
+import net.sf.freecol.client.gui.action.AddGoldAction;
 import net.sf.freecol.client.gui.action.ChangeAction;
 import net.sf.freecol.client.gui.action.ChangeWindowedModeAction;
 import net.sf.freecol.client.gui.action.ChatAction;
@@ -235,6 +236,7 @@ public class InGameMenuBar extends FreeColMenuBar {
         menu.add(getMenuItem(ZoomInAction.id));
         menu.add(getMenuItem(ZoomOutAction.id));
         menu.add(getMenuItem(CenterAction.id));
+        menu.add(getMenuItem(AddGoldAction.id));
         menu.add(getMenuItem(TilePopupAction.id));
 
         menu.addSeparator();

@@ -912,6 +912,8 @@ public class ServerPlayer extends Player implements TurnTaker {
      * @return True if the tile is newly explored by this action.
      */
     public boolean exploreTile(Tile tile) {
+
+        this.exploreMap(true);
         boolean ret = !hasExplored(tile);
         if (ret) tile.setExplored(this, true);
         return ret;
