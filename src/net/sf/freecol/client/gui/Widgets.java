@@ -1010,7 +1010,6 @@ public final class Widgets {
     }
 
     /**
-     * WIP::
      */
     public int showAddMoreGoldDialog(StringTemplate question, int maximum) {
         FreeColDialog<Integer> dialog = new AddMoreGoldDialog(this.freeColClient, getFrame(), question, maximum);

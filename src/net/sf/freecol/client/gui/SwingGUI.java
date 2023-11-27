@@ -195,6 +195,8 @@ public class SwingGUI extends GUI {
     /** Has a goto operation started? */
     private boolean gotoStarted = false;
 
+    /** */
+    FreeColClient freeColClient;
 
     /**
      * Create the GUI.
@@ -203,6 +205,8 @@ public class SwingGUI extends GUI {
      */
     public SwingGUI(FreeColClient freeColClient) {
         super(freeColClient);
+
+        this.freeColClient = freeColClient;
 
         this.graphicsDevice = Utils.getGoodGraphicsDevice();
         if (this.graphicsDevice == null) {
@@ -2649,8 +2653,20 @@ public class SwingGUI extends GUI {
      * {@inheritDoc}
      */
     @Override
-    public int showAddMoreGoldDialog(StringTemplate question, int maximum) {
-        return this.widgets.showAddMoreGoldDialog(question, maximum);
+    public boolean showAddMoreGoldDialog(StringTemplate question, int maximum) {
+        int result = this.widgets.showAddMoreGoldDialog(question, maximum);
+
+        /**
+         * add gold to increment
+         */
+        final Player player = this.freeColClient.getMyPlayer();
+        if (result != -1) {
+            player.modifyGold(result);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**

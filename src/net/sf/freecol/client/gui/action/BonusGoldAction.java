@@ -56,7 +56,6 @@ public class BonusGoldAction extends FreeColAction {
     // Interface ActionListener
 
     /**
-     * WIP:
      * {@inheritDoc}
      */
     @Override

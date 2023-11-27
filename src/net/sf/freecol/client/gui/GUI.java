@@ -305,9 +305,8 @@ public class GUI extends FreeColClientHolder {
     }
 
     /**
-     * WIP:
      */
-    public int confirmSaveBonusGold() {
+    public boolean confirmSaveBonusGold() {
         StringTemplate t;
         t = StringTemplate.template("confirmBonusDialog.addGold");
 
@@ -2488,12 +2487,11 @@ public class GUI extends FreeColClientHolder {
                                              int maximum) { return -1; }
 
     /**
-     * WIP:
      * @param question
      * @param maximum
      * @return
      */
-    public int showAddMoreGoldDialog(StringTemplate question, int maximum) { return -1; }
+    public boolean showAddMoreGoldDialog(StringTemplate question, int maximum) { return false; }
 
     /**
      * Show the {@code ServerListPanel}.

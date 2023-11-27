@@ -4831,7 +4831,6 @@ public final class InGameController extends FreeColClientHolder {
     }
 
     /**
-     * WIP:
      * Opens a dialog where the user should specify the gold to save.
      *
      * Called from BonusGoldAction.
@@ -4842,8 +4841,7 @@ public final class InGameController extends FreeColClientHolder {
         final Game game = getGame();
         if (game == null) return false;
 
-        getGUI().confirmSaveBonusGold();
-        return true;
+        return getGUI().confirmSaveBonusGold();
     }
 
     /**

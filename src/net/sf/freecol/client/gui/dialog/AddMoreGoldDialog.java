@@ -102,10 +102,6 @@ public final class AddMoreGoldDialog
 
         panel.setSize(panel.getPreferredSize());
 
-        /**
-         * WIP: SAVE GOLD
-         * TODO: se clicar no "Sim" então chamar o metodo e guardar gold.
-         */
         initializeInputDialog(frame, true, panel, null, "Sim", "Não");
     }
 
