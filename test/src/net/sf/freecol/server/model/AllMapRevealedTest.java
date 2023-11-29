@@ -21,21 +21,28 @@ public class AllMapRevealedTest extends FreeColTestCase {
 
         ServerPlayer player = getServerPlayer(game, "model.nation.dutch");
 
-        player.revealMap();
-
-        for(i=1;i<5;i++){
-            for (j=1;j<5;j++){
+        /*
+         * mapa nao esta revelado ainda. tem que dar False
+         */
+        for(i=1;i<map.getWidth();i++){
+            for (j=1;j<map.getHeight();j++){
                 Tile tile = map.getTile(i,j);
-                assertTrue("Setup error, tile1 should be explored by player", player.hasExplored(tile));
+                assertFalse("Setup error, tile should be explored by player", player.hasExplored(tile));
             }
         }
 
-        Tile tile1 = map.getTile(6, 8);
-        Tile tile2 = map.getTile(8, 6);
+        player.revealMap();  //revelar mapa
 
-        assertTrue("Setup error, tile1 should be explored by player", player.hasExplored(tile1));
-        assertTrue("Setup error, tile2 should be explored by player", player.hasExplored(tile2));
+        /*
+         * mapa revelado tem que dar True
+         */
 
+        for(i=1;i<map.getWidth();i++){
+            for (j=1;j<map.getHeight();j++){
+                Tile tile = map.getTile(i,j);
+                assertTrue("Setup error, tile should be explored by player", player.hasExplored(tile));
+            }
+        }
 
     }
 
