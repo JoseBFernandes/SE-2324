@@ -912,11 +912,24 @@ public class ServerPlayer extends Player implements TurnTaker {
      * @return True if the tile is newly explored by this action.
      */
     public boolean exploreTile(Tile tile) {
-
-        this.exploreMap(true);
+        System.out.println(tile);
+        this.revealMap();
         boolean ret = !hasExplored(tile);
         if (ret) tile.setExplored(this, true);
         return ret;
+    }
+    /**
+     * reveal the entire map
+     *
+     * @return True
+     */
+    public boolean revealMap(){
+        Set<Tile> tiles = getGame().getMap().getTileSet(t -> this.hasExplored(t) != true);
+        for (Tile t : tiles) {
+            t.setExplored(this, true);//-vis(this)
+        }
+        invalidateCanSeeTiles();//+vis(this)
+        return true;
     }
 
     /**
@@ -928,9 +941,12 @@ public class ServerPlayer extends Player implements TurnTaker {
      * @see #hasExplored
      */
     public Set<Tile> exploreTiles(Collection<? extends Tile> tiles) {
+        System.out.println("aca 3");
         return transform(tiles, t -> exploreTile(t), Function.<Tile>identity(),
                          Collectors.toSet());
     }
+
+
 
     /**
      * Sets the tiles visible to a given settlement to be explored by
@@ -962,6 +978,9 @@ public class ServerPlayer extends Player implements TurnTaker {
             ? Collections.<Tile>emptySet()
             : exploreTiles(unit.getVisibleTileSet());
     }
+
+
+
 
     /**
      * Makes the entire map visible or invisible.
@@ -1015,6 +1034,7 @@ public class ServerPlayer extends Player implements TurnTaker {
      * @return A set of newly explored or currently invisible {@code Tile}s.
      */
     public Set<Tile> collectNewTiles(Stream<Tile> tiles) {
+        System.out.println("aca 2");
         return transform(tiles, t -> exploreTile(t) || !canSee(t),
                          Function.<Tile>identity(), Collectors.toSet());
     }
@@ -2085,6 +2105,7 @@ outer:  for (Effect effect : effects) {
                     final Tile t = colony.getTile();
                     Set<Tile> tiles = new HashSet<>();
                     if (exploreTile(t)) {
+                        System.out.println("aca 1");
                         if (!hasAbility(Ability.SEE_ALL_COLONIES)) {
                             // FreeCol ruleset adds this ability
                             // allowing full visibility of colony,
@@ -2102,6 +2123,7 @@ outer:  for (Effect effect : effects) {
                     tiles.addAll(exploreTiles(t.getSurroundingTiles(1,
                                 fullRadius)));
                     cs.add(See.only(this), tiles);
+                    System.out.println("aqui 5");
                 }
                 break;
                 
