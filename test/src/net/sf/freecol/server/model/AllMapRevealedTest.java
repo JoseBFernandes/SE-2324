@@ -6,14 +6,15 @@ import net.sf.freecol.common.model.Tile;
 import net.sf.freecol.server.ServerTestHelper;
 import net.sf.freecol.util.test.FreeColTestCase;
 
+import static net.sf.freecol.util.test.FreeColTestCase.getTestMap;
+
+
 public class AllMapRevealedTest extends FreeColTestCase {
 
 
     public void testMapRevealComplete() {
 
-        getTestMap();
         Game game = ServerTestHelper.startServerGame(getTestMap());
-
 
         Map map = game.getMap();
 
