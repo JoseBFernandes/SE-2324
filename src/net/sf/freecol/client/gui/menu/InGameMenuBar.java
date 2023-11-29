@@ -173,9 +173,9 @@ public class InGameMenuBar extends FreeColMenuBar {
         menu.setOpaque(false);
         menu.setMnemonic(KeyEvent.VK_B);
 
-        menu.add(getMenuItem(BonusPointAction.id));
+        // menu.add(getMenuItem(BonusPointAction.id));
         menu.add(getMenuItem(BonusGoldAction.id));
-        menu.add(getMenuItem(BonusTaxAction.id));
+        // menu.add(getMenuItem(BonusTaxAction.id));
 
         add(menu);
     }
