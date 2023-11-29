@@ -912,7 +912,6 @@ public class ServerPlayer extends Player implements TurnTaker {
      * @return True if the tile is newly explored by this action.
      */
     public boolean exploreTile(Tile tile) {
-        System.out.println(tile);
         this.revealMap();
         boolean ret = !hasExplored(tile);
         if (ret) tile.setExplored(this, true);
@@ -921,15 +920,13 @@ public class ServerPlayer extends Player implements TurnTaker {
     /**
      * reveal the entire map
      *
-     * @return True
      */
-    public boolean revealMap(){
+    public void revealMap(){
         Set<Tile> tiles = getGame().getMap().getTileSet(t -> this.hasExplored(t) != true);
         for (Tile t : tiles) {
-            t.setExplored(this, true);//-vis(this)
+            t.setExplored(this, true);
         }
-        invalidateCanSeeTiles();//+vis(this)
-        return true;
+        invalidateCanSeeTiles();
     }
 
     /**
@@ -941,7 +938,6 @@ public class ServerPlayer extends Player implements TurnTaker {
      * @see #hasExplored
      */
     public Set<Tile> exploreTiles(Collection<? extends Tile> tiles) {
-        System.out.println("aca 3");
         return transform(tiles, t -> exploreTile(t), Function.<Tile>identity(),
                          Collectors.toSet());
     }
@@ -1034,7 +1030,6 @@ public class ServerPlayer extends Player implements TurnTaker {
      * @return A set of newly explored or currently invisible {@code Tile}s.
      */
     public Set<Tile> collectNewTiles(Stream<Tile> tiles) {
-        System.out.println("aca 2");
         return transform(tiles, t -> exploreTile(t) || !canSee(t),
                          Function.<Tile>identity(), Collectors.toSet());
     }
