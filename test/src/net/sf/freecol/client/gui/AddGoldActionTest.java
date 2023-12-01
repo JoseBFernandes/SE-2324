@@ -6,6 +6,7 @@ import net.sf.freecol.server.model.ServerPlayer;
 import net.sf.freecol.util.test.FreeColTestCase;
 
 
+
 public class AddGoldActionTest extends FreeColTestCase {
 
     public void testAddGold(){
