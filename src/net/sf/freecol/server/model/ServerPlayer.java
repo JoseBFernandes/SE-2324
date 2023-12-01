@@ -920,7 +920,6 @@ public class ServerPlayer extends Player implements TurnTaker {
     /**
      * reveal the entire map
      *
-     *
      */
     public void revealMap(){
         Set<Tile> tiles = getGame().getMap().getTileSet(t -> this.hasExplored(t) != true);

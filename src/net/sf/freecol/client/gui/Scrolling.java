@@ -35,6 +35,10 @@ public final class Scrolling extends FreeColClientHolder {
         super(freeColClient);
         this.canvas = canvas;
     }
+
+    public Canvas getCanvas(){
+        return this.canvas;
+    }
     
     
     /**

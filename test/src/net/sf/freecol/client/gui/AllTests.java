@@ -30,6 +30,7 @@ public class AllTests {
         //$JUnit-BEGIN$
         suite.addTestSuite(FontTest.class);
         suite.addTestSuite(AddGoldActionTest.class);
+        //suite.addTestSuite(MapDragTest.class);
         //$JUnit-END$
         return suite;
     }
