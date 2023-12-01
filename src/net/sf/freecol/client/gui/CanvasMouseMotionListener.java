@@ -84,9 +84,7 @@ public final class CanvasMouseMotionListener extends FreeColClientHolder impleme
 
         scrolling.performDragScrollIfActive(me);
 
-
         getGUI().updateGoto(me.getX(), me.getY(), true);
-
 
         int x = me.getX();
         int y = me.getY();

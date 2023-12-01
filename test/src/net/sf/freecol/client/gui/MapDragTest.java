@@ -22,6 +22,7 @@ public class MapDragTest extends FreeColTestCase {
             CanvasMouseMotionListener cm = new CanvasMouseMotionListener(freeColClient, null);
             final Point focusPoint = freeColClient.getGUI().getFocusMapPoint();
 
+
             int x = 2;
             int y = 2;
 
