@@ -72,7 +72,7 @@ public final class CanvasMouseListener extends FreeColClientHolder implements Mo
      * {@inheritDoc}
      */
     public void mousePressed(MouseEvent e) {
-        System.out.println("mousePressed CanvasMouseListener ---------------------");
+        //System.out.println("mousePressed CanvasMouseListener ---------------------");
         if (!e.getComponent().isEnabled()) return;
         final GUI gui = getGUI();
         
@@ -93,18 +93,18 @@ public final class CanvasMouseListener extends FreeColClientHolder implements Mo
             // Drag and selection
             // Enable dragging with button 1
             // @see CanvasMouseMotionListener#mouseDragged
-            System.out.println("drag and selection 1 <------------------->");
+            //System.out.println("drag and selection 1 <------------------->");
             gui.prepareDrag(e.getX(), e.getY());
             //setFocus(e);
 
             break;
         case MouseEvent.BUTTON2: // Immediate goto
-            System.out.println("drag and selection 2 <------------------->");
+            //System.out.println("drag and selection 2 <------------------->");
 
             gui.performGoto(e.getX(), e.getY());
             break;
         case MouseEvent.BUTTON3: // Immediate tile popup
-            System.out.println("drag and selection 3 <------------------->");
+            //System.out.println("drag and selection 3 <------------------->");
 
             gui.showTilePopup(gui.tileAt(e.getX(), e.getY()));
             break;
@@ -145,7 +145,7 @@ public final class CanvasMouseListener extends FreeColClientHolder implements Mo
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println("mouseDragged dentro ");
+        //System.out.println("mouseDragged dentro ");
         //setFocus(e);
         }
     /**

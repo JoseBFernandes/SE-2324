@@ -98,7 +98,7 @@ public class CanvasMapViewer extends JComponent {
         // Get the background without scaling, to avoid wasting
         // memory needlessly keeping an unbounded number of rescaled
         // versions of the largest image in FreeCol, forever.
-        System.out.println("paintMainMenuBackgound");
+        //System.out.println("paintMainMenuBackgound");
         final Image bgImage = ImageLibrary.getCanvasBackgroundImage();
         if (bgImage != null) {
             // Draw background image with scaling.
